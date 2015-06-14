@@ -1,6 +1,6 @@
 #+TITLE: Version Control with Git
 #+AUTHOR: Peter Moresi
-#+INFOJS_OPT: toc:nil ltoc:t view:info mouse:underline buttons:nil
+#+INFOJS_OPT:  view:info mouse:underline buttons:nil
 #+INFOJS_OPT: up:http://orgmode.org/worg/
 #+INFOJS_OPT: home:http://orgmode.org
 
