@@ -26,4 +26,121 @@
     - [[https://www.sourcetreeapp.com/][Atlassian SourceTree]] works great on Windows/Mac
     - Even Visual Studio/TFS work with Git
     - There are dozens of free and commercial options available
-  - Like SVN/TFS; Git offers a command-line interface to automate processes
+  - Like SVN/TFS; Git offers a command-line interface to automate your workflow
+
+* What is a repo?
+
+  - A repo is a special folder on your computer
+    - Contains the files
+    - Contains a /hidden folder/ named /.git/
+  - The hiddent folder contains:
+    - Commits
+      - Description of change (optional)
+      - File content changes
+    - Branches
+      - Copy of folder with changes
+      - Useful for managing set of changes to project
+    - Hooks
+      - Customize your workflow
+
+* Make a local repo
+
+  - From the command line:
+
+    #+BEGIN_SRC sh
+      # intialize current folder as git repo
+      git init . 
+    #+END_SRC
+
+* Commit a change
+
+  - From the command line:
+
+    #+BEGIN_SRC sh
+      git add README.md
+      git commit -m "Initial commit"
+    #+END_SRC
+
+* Make a remote repo
+
+  - Social networks allow users to create a remote repo
+  - Clone is used to copy remote repo to your machine
+    
+    #+BEGIN_SRC sh
+      git clone git@github.com:petermoresi/git-intro.git
+    #+END_SRC
+
+  - Repo can be cloned over HTTPS or SSH
+
+    - HTTPS uses username/password authentication
+
+    - SSH uses public key infrastructure for secure without passwords
+
+* Setting up SSH Keys
+
+  For repos cloned over SSH you can use SSH keys to securely identify trusted computers, without passwords.
+
+  - Step 1: Check for Keys
+
+    #+BEGIN_SRC sh
+      # Lists the files in your .ssh directory, if they exist
+      ls -al ~/.ssh
+    #+END_SRC
+
+  - Step 2: Generate a new SSH key
+
+    #+BEGIN_SRC sh
+      # Creates a new ssh key, using the provided email as a label
+      ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    #+END_SRC
+
+  - Step3: Copy SSH to your server
+    
+    #+BEGIN_SRC sh
+      # Copy file content to clipboard for copy/paste into website
+      # Use pbcopy of Mac
+      pbcopy < ~/.ssh/id_rsa.pub
+
+      # Use clip of Windows
+      clip < ~/.ssh/id_rsa.pub
+
+      # Use xclip of Linux
+      # sudo apt-get install xclip
+      xclip -selection clipboard < ~/.ssh/id_rsa.pub
+    #+END_SRC
+
+* Push changes to your remote repo
+
+  A cloned repo is setup with a remote server where changes may be pushed
+
+    #+BEGIN_SRC sh
+      # Push changes back to the master branch to the origin (e.g. your Git server)
+      git push origin master
+    #+END_SRC
+
+* Create a branch
+
+  A branch is useful for making isolated changes to your repo.
+
+  - Get list of branches
+    #+BEGIN_SRC sh
+      git branch
+    #+END_SRC
+  - Create new branch
+    #+BEGIN_SRC sh
+      git branch my-new-branch-name
+    #+END_SRC
+  - Checkout a branch
+    #+BEGIN_SRC sh
+      git checkout my-new-branch-name
+    #+END_SRC
+* Merge two branches
+
+  Git makes moving changes between branches easy.
+
+  #+BEGIN_SRC sh
+    # Merge changes from my-new-feature into master branch
+    git merge my-new-feature master
+  #+END_SRC
+
+  Avoid two-way merges for automatic merges without conflicts.

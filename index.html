@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Version Control with Git</title>
-<!-- 2015-06-14 Sun 09:54 -->
+<!-- 2015-06-14 Sun 10:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Peter Moresi" />
@@ -216,6 +216,14 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-1">1. What is Git?</a></li>
 <li><a href="#sec-2">2. Why choose Git?</a></li>
+<li><a href="#sec-3">3. What is a repo?</a></li>
+<li><a href="#sec-4">4. Make a local repo</a></li>
+<li><a href="#sec-5">5. Commit a change</a></li>
+<li><a href="#sec-6">6. Make a remote repo</a></li>
+<li><a href="#sec-7">7. Setting up SSH Keys</a></li>
+<li><a href="#sec-8">8. Push changes to your remote repo</a></li>
+<li><a href="#sec-9">9. Create a branch</a></li>
+<li><a href="#sec-10">10. Merge two branches</a></li>
 </ul>
 </div>
 </div>
@@ -270,15 +278,237 @@ for the JavaScript code in this tag.
 </li>
 </ul>
 </li>
-<li>Like SVN/TFS; Git offers a command-line interface to automate processes
+<li>Like SVN/TFS; Git offers a command-line interface to automate your workflow
 </li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> What is a repo?</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>A repo is a special folder on your computer
+<ul class="org-ul">
+<li>Contains the files
+</li>
+<li>Contains a <i>hidden folder</i> named <i>.git</i>
+</li>
+</ul>
+</li>
+<li>The hiddent folder contains:
+<ul class="org-ul">
+<li>Commits
+<ul class="org-ul">
+<li>Description of change (optional)
+</li>
+<li>File content changes
+</li>
+</ul>
+</li>
+<li>Branches
+<ul class="org-ul">
+<li>Copy of folder with changes
+</li>
+<li>Useful for managing set of changes to project
+</li>
+</ul>
+</li>
+<li>Hooks
+<ul class="org-ul">
+<li>Customize your workflow
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Make a local repo</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>From the command line:
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">intialize current folder as git repo</span>
+git init .
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Commit a change</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>From the command line:
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git add README.md
+git commit -m <span style="color: #8b2252;">"Initial commit"</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Make a remote repo</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Social networks allow users to create a remote repo
+</li>
+<li>Clone is used to copy remote repo to your machine
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git@github.com:petermoresi/git-intro.git
+</pre>
+</div>
+</li>
+
+<li>Repo can be cloned over HTTPS or SSH
+
+<ul class="org-ul">
+<li>HTTPS uses username/password authentication
+</li>
+
+<li>SSH uses public key infrastructure for secure without passwords
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Setting up SSH Keys</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+For repos cloned over SSH you can use SSH keys to securely identify trusted computers, without passwords.
+</p>
+
+<ul class="org-ul">
+<li>Step 1: Check for Keys
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Lists the files in your .ssh directory, if they exist</span>
+ls -al ~/.ssh
+</pre>
+</div>
+</li>
+
+<li>Step 2: Generate a new SSH key
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Creates a new ssh key, using the provided email as a label</span>
+ssh-keygen -t rsa -b 4096 -C <span style="color: #8b2252;">"your_email@example.com"</span>
+</pre>
+</div>
+</li>
+
+<li>Step3: Copy SSH to your server
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Copy file content to clipboard for copy/paste into website</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Use pbcopy of Mac</span>
+pbcopy &lt; ~/.ssh/id_rsa.pub
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Use clip of Windows</span>
+clip &lt; ~/.ssh/id_rsa.pub
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Use xclip of Linux</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">sudo apt-get install xclip</span>
+xclip -selection clipboard &lt; ~/.ssh/id_rsa.pub
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Push changes to your remote repo</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+A cloned repo is setup with a remote server where changes may be pushed
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Push changes back to the master branch to the origin (e.g. your Git server)</span>
+git push origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Create a branch</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+A branch is useful for making isolated changes to your repo.
+</p>
+
+<ul class="org-ul">
+<li>Get list of branches
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch
+</pre>
+</div>
+</li>
+<li>Create new branch
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch my-new-branch-name
+</pre>
+</div>
+</li>
+<li>Checkout a branch
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout my-new-branch-name
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Merge two branches</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Git makes moving changes between branches easy.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b22222;"># </span><span style="color: #b22222;">Merge changes from my-new-feature into master branch</span>
+git merge my-new-feature master
+</pre>
+</div>
+
+<p>
+Avoid two-way merges for automatic merges without conflicts.
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Peter Moresi</p>
-<p class="date">Created: 2015-06-14 Sun 09:54</p>
+<p class="date">Created: 2015-06-14 Sun 10:32</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
