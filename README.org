@@ -144,3 +144,11 @@
   #+END_SRC
 
   Avoid two-way merges for automatic merges without conflicts.
+* More resources
+
+  - [[https://git-scm.com/][Git SCM Website]]
+  - [[https://help.github.com/articles/set-up-git/][Github Setup]]
+  - [[https://try.github.io/levels/1/challenges/1][Try Git Tutorial]]
+  - [[https://pcottle.github.io/learnGitBranching/][Learning Git branching tutorial]]
+  - [[https://www.git-tower.com/learn/][Git Tower Learn Website]]
+  - [[https://help.github.com/articles/good-resources-for-learning-git-and-github/][Github's list of learning references]]
