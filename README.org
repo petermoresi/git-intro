@@ -1,0 +1,29 @@
+#+TITLE: Version Control with Git
+#+AUTHOR: Peter Moresi
+#+INFOJS_OPT: toc:nil ltoc:t view:info mouse:underline buttons:nil
+#+INFOJS_OPT: up:http://orgmode.org/worg/
+#+INFOJS_OPT: home:http://orgmode.org
+
+* What is Git?
+
+  - Git is a *version control system*
+  - Git operates in a *filesystem*; and requires no server infrastructure
+  - Git is entirely offline (there is no server)
+  - Git is an advanced file synchronization utility
+  - Git experience is similar to a traditional VCS (e.g. CVS, SVN, TFS, ect...) when a server stores the /master/ copy.
+
+* Why choose Git?
+
+  - HUGE user community
+  - Distributed computing typically offers better performance then centralized systems like SVN and TFS.
+  - Social networks like https://github.com, https://bitbucket.org/ and https://about.gitlab.com/
+    - Secure, private repos for a fee
+    - Issue tracking, wiki and release management tools
+    - Web based reporting and file viewing
+    - More...
+  - Graphical tools are available for Windows and Mac
+    - Github for [[https://windows.github.com/][Windows]] / [[https://mac.github.com/][Mac]] work with any Git repo (not just the ones they host)
+    - [[https://www.sourcetreeapp.com/][Atlassian SourceTree]] works great on Windows/Mac
+    - Even Visual Studio/TFS work with Git
+    - There are dozens of free and commercial options available
+  - Like SVN/TFS; Git offers a command-line interface to automate processes
