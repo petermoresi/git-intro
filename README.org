@@ -31,7 +31,7 @@
 * What is a repo?
 
   - A repo is a special folder on your computer
-    - Contains the files
+    - Contains your files/folders
     - Contains a /hidden folder/ named /.git/
   - The hiddent folder contains:
     - Commits
